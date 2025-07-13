@@ -163,20 +163,20 @@ def model():
     df = df.set_index('Date')
 
     y = df['Spot_price'].resample('MS').mean()
-    p = range(0, 2)
-    d = range(0, 2)
-    q = range(0, 2)
+    #p = range(0, 2)
+    #d = range(0, 2)
+    #q = range(0, 2)
 
-    pdq = list(itertools.product(p, d, q))
-    seasonal_pdq = [(x[0], x[1], x[2], 12) for x in list(itertools.product(p, d, q))]
+    #pdq = list(itertools.product(p, d, q))
+    #seasonal_pdq = [(x[0], x[1], x[2], 12) for x in list(itertools.product(p, d, q))]
 
-    for param in pdq:
-        for param_seasonal in seasonal_pdq:
-            try:
-                mod = sm.tsa.statespace.SARIMAX(y, order = param, seasonal_order = param_seasonal, enforce_stationary = False,enforce_invertibility=False) 
-                result = mod.fit()   
-            except: 
-                continue
+    #for param in pdq:
+    #    for param_seasonal in seasonal_pdq:
+    #        try:
+    #            mod = sm.tsa.statespace.SARIMAX(y, order = param, seasonal_order = param_seasonal, enforce_stationary = False,enforce_invertibility=False) 
+    #            result = mod.fit()   
+    #        except: 
+    #            continue
     model = sm.tsa.statespace.SARIMAX(y, order = (1, 1, 1),
                                     seasonal_order = (1, 1, 0, 12)
                                     )
