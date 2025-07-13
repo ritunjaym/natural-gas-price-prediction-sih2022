@@ -157,7 +157,7 @@ def forecast():
         st.sidebar.download_button(label="Download Output CSV File",data=df.to_csv().encode('utf-8'),file_name=f"Forecast {datetime.datetime. now(). strftime('%Y-%m-%d-%I:%M:%S_%p')}.csv",mime='text/csv')
         
 def model():    
-    df = pd.read_csv('upload_file.csv')
+    df = pd.read_csv('ngpp-data-daily.csv')
     df['Date']=pd.to_datetime(df['Date'])
     df = df.sort_values('Date')
     df = df.set_index('Date')
